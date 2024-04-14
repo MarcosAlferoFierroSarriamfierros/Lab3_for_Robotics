@@ -52,6 +52,7 @@ A diferencia de la guìa de laboratorio, lo que hicimos fue realizar el script e
 - Finalmente, en la tercera buscamos el archivo de python con el nombre myTeleopKey.py y lo ejecutamos
 Una vez hecho esto se podrà mover la tortuga con las teclas como se pide en la guìa.
 El còdigo es el que se muestra:
+Importamos las librerìas y definimos los valores en ASCII de las teclas que vamos a usar
 ```python
 
 import rospy
@@ -66,7 +67,10 @@ KEY_A = 97
 KEY_D = 100
 KEY_R = 114
 KEY_SPACE = 32
+```
+Definimos la velocidad con que la tortuga rota y se traslada, ademàs de implemetar la funciòn de lectura de teclas:
 
+```python
 # val_velocities
 LINEAR_VEL = 1.0
 ANGULAR_VEL = 1.0
@@ -77,7 +81,9 @@ def get_key():
     key = ord(sys.stdin.read(1))
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, termios.tcgetattr(sys.stdin))
     return key
-
+```
+Definimos las funciones de movimiento al precionar las teclas: (adelante, atràs, etc)
+```python
 # adelante
 def move_forward(pub):
     twist = Twist()
@@ -118,7 +124,9 @@ def rotate_180_degrees():
         teleport_relative(0.0, 0.0, 3.14159)
     except rospy.ServiceException as e:
         print("Service call failed:", e)
-
+```
+Realizamos la funciòn principal y algunas condiciones necesarias para evitar malfuncionamientos
+```python
 # main
 def main():
     rospy.init_node('myTeleopKey', anonymous=True)
@@ -147,6 +155,9 @@ def main():
         twist = Twist()
         pub.publish(twist)
 
+```
+Llamamos a la funciòn principal:
+```python
 if __name__ == '__main__':
     main()
 ```
