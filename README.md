@@ -1,5 +1,5 @@
 # Lab3_for_Rootics
-Elaborado por Marcos Alfredo Fierro Sarria y Andrès Camilo Apraez Zamora
+Elaborado por Marcos Alfredo Fierro Sarria y Camilo Andres Apraez Zamora
 A continuaciòn se presenta el desarrollo del taller.
 Para llevar a cabo la actividad, es necesario hacer uso de ROS (Robot Operating System), y Matlab. En este caso hemos usado Matlab 2024a. 
 Ros trabaja a partir de un sistema de nodos que son independientes entre si que trabajan conjuntamente, y es posible ver como funciona con la herramienta turtlesim, el cual en principio bàsicamente es un simulador de movimientos en 2D. 
