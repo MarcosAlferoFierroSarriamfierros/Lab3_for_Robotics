@@ -1,4 +1,4 @@
-# Lab3_for_Rootics
+# Lab3_for_Robotics
 Elaborado por Marcos Alfredo Fierro Sarria y Camilo Andres Apraez Zamora
 A continuaciòn se presenta el desarrollo del taller.
 Para llevar a cabo la actividad, es necesario hacer uso de ROS (Robot Operating System), y Matlab. En este caso hemos usado Matlab 2024a. 
