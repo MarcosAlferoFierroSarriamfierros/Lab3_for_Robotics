@@ -6,8 +6,6 @@ import tty
 import termios
 from geometry_msgs.msg import Twist
 from turtlesim.srv import TeleportAbsolute, TeleportRelative
-
-# Definir los valores de las teclas
 KEY_W = 119
 KEY_S = 115
 KEY_A = 97
@@ -15,42 +13,42 @@ KEY_D = 100
 KEY_R = 114
 KEY_SPACE = 32
 
-# Definir las velocidades lineal y angular
+# val_velocities
 LINEAR_VEL = 1.0
 ANGULAR_VEL = 1.0
 
-# Función para leer la tecla presionada
+# Funkziu to read board
 def get_key():
     tty.setraw(sys.stdin.fileno())
     key = ord(sys.stdin.read(1))
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, termios.tcgetattr(sys.stdin))
     return key
 
-# Función para mover la tortuga hacia adelante
+# adelante
 def move_forward(pub):
     twist = Twist()
     twist.linear.x = LINEAR_VEL
     pub.publish(twist)
 
-# Función para mover la tortuga hacia atrás
+# back
 def move_backward(pub):
     twist = Twist()
     twist.linear.x = -LINEAR_VEL
     pub.publish(twist)
 
-# Función para girar la tortuga en sentido horario
+# girar horario
 def turn_clockwise(pub):
     twist = Twist()
     twist.angular.z = -ANGULAR_VEL
     pub.publish(twist)
 
-# Función para girar la tortuga en sentido antihorario
+# girar antihorario
 def turn_counterclockwise(pub):
     twist = Twist()
     twist.angular.z = ANGULAR_VEL
     pub.publish(twist)
 
-# Función para teleportar la tortuga a su posición y orientación centrales
+# resetear posiciòn
 def reset_position():
     rospy.wait_for_service('/turtle1/teleport_absolute')
     try:
@@ -59,7 +57,6 @@ def reset_position():
     except rospy.ServiceException as e:
         print("Service call failed:", e)
 
-# Función para teleportar la tortuga relativa a su posición y orientación actuales
 def rotate_180_degrees():
     rospy.wait_for_service('/turtle1/teleport_relative')
     try:
@@ -68,7 +65,7 @@ def rotate_180_degrees():
     except rospy.ServiceException as e:
         print("Service call failed:", e)
 
-# Función principal
+# main
 def main():
     rospy.init_node('myTeleopKey', anonymous=True)
     pub = rospy.Publisher('/turtle1/cmd_vel', Twist, queue_size=10)
